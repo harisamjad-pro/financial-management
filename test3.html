@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        .sidebar {
+            width: 80px;
+            height: 100vh;
+            background-color: #1e1e1e;
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+        }
+
+        .sidebar a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 15px 0;
+            font-size: 20px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: #007bff;
+        }
+
+        .content {
+            margin-left: 80px;
+            padding: 20px;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .card {
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            margin: 0 0 10px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .table th,
+        .table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+
+        .table th {
+            background-color: #333;
+            color: #ddd;
+        }
+
+        .table td {
+            color: #bbb;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .input-group {
+            margin-top: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #1e1e1e;
+            color: #ffffff;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+    </style>
+    <script>
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <a href="#" onclick="showPage('dashboard')">🏠</a>
+        <a href="#" onclick="showPage('campaigns')">📊</a>
+        <a href="#" onclick="showPage('reports')">📈</a>
+        <a href="#" onclick="showPage('messages')">📩</a>
+        <a href="#" onclick="showPage('settings')">⚙️</a>
+        <a href="#" onclick="showPage('help')">❓</a>
+    </div>
+
+    <div class="content">
+        <!-- Dashboard Page -->
+        <div class="page active" id="dashboard">
+            <h1>Dashboard</h1>
+            <div class="card">
+                <h2>Overview</h2>
+                <p><strong>Total Balance:</strong> $23,094.57</p>
+                <p><strong>Active Campaigns:</strong> 5</p>
+            </div>
+            <div class="card">
+                <h2>Recent Trends</h2>
+                <div class="flex">
+                    <p><strong>Monthly Growth:</strong> +19.23%</p>
+                    <button class="button">View Full Analysis</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Campaigns Page -->
+        <div class="page" id="campaigns">
+            <h1>Campaigns</h1>
+            <div class="card">
+                <h2>Create a New Campaign</h2>
+                <div class="input-group">
+                    <label for="campaign-name">Campaign Name:</label>
+                    <input type="text" id="campaign-name" placeholder="Enter campaign name">
+                </div>
+                <div class="input-group">
+                    <label for="campaign-type">Campaign Type:</label>
+                    <select id="campaign-type">
+                        <option value="social">Social Media</option>
+                        <option value="email">Email Marketing</option>
+                        <option value="ads">Paid Ads</option>
+                    </select>
+                </div>
+                <button class="button">Create Campaign</button>
+            </div>
+            <div class="card">
+                <h2>Active Campaigns</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Followers</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Pela Design</td>
+                            <td>Active</td>
+                            <td>3,074</td>
+                            <td><button class="button">View</button></td>
+                        </tr>
+                        <tr>
+                            <td>Elixir Ads</td>
+                            <td>Paused</td>
+                            <td>2,931</td>
+                            <td><button class="button">Resume</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Reports Page -->
+        <div class="page" id="reports">
+            <h1>Reports</h1>
+            <div class="card">
+                <h2>Monthly Revenue</h2>
+                <p>Analyze financial performance for this month.</p>
+                <button class="button">Download Report</button>
+            </div>
+            <div class="card">
+                <h2>Engagement Metrics</h2>
+                <p>Track user engagement and conversion rates across campaigns.</p>
+            </div>
+        </div>
+
+        <!-- Messages Page -->
+        <div class="page" id="messages">
+            <h1>Messages</h1>
+            <div class="card">
+                <h2>Inbox</h2>
+                <p>No new messages. Check back later!</p>
+            </div>
+            <div class="card">
+                <h2>Recent Communications</h2>
+                <p>View all sent and received communications from campaigns.</p>
+            </div>
+        </div>
+
+        <!-- Settings Page -->
+        <div class="page" id="settings">
+            <h1>Settings</h1>
+            <div class="card">
+                <h2>Profile Settings</h2>
+                <div class="input-group">
+                    <label for="user-name">Name:</label>
+                    <input type="text" id="user-name" value="John Doe">
+                </div>
+                <div class="input-group">
+                    <label for="user-email">Email:</label>
+                    <input type="email" id="user-email" value="john.doe@example.com">
+                </div>
+                <button class="button">Save Changes</button>
+            </div>
+        </div>
+
+        <!-- Help Page -->
+        <div class="page" id="help">
+            <h1>Help</h1>
+            <div class="card">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find quick answers to common issues.</p>
+                <button class="button">View FAQ</button>
+            </div>
+            <div class="card">
+                <h2>Contact Support</h2>
+                <p>Need more help? Reach out to our support team.</p>
+                <button class="button">Contact Us</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

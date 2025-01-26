@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        .sidebar {
+            width: 80px;
+            height: 100vh;
+            background-color: #1e1e1e;
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+        }
+
+        .sidebar a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 15px 0;
+            font-size: 18px;
+        }
+
+        .sidebar a:hover {
+            color: #007bff;
+        }
+
+        .content {
+            margin-left: 80px;
+            padding: 20px;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .card {
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            margin: 0 0 10px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table th,
+        .table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+
+        .table th {
+            background-color: #2a2a2a;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <a href="#" onclick="showPage('dashboard')">🏠</a>
+        <a href="#" onclick="showPage('campaigns')">📊</a>
+        <a href="#" onclick="showPage('reports')">📈</a>
+        <a href="#" onclick="showPage('messages')">📩</a>
+        <a href="#" onclick="showPage('settings')">⚙️</a>
+        <a href="#" onclick="showPage('help')">❓</a>
+    </div>
+
+    <div class="content">
+        <!-- Dashboard Page -->
+        <div class="page active" id="dashboard">
+            <h1>Dashboard</h1>
+            <div class="card">
+                <h2>Financial Overview</h2>
+                <p>Current balance: <strong>$23,094.57</strong></p>
+                <p>Annual Growth: <strong>+37.16%</strong></p>
+                <p>Compare your monthly and yearly progress with detailed charts and predictions powered by AI
+                    analytics.</p>
+            </div>
+            <div class="card">
+                <h2>Quick Insights</h2>
+                <ul>
+                    <li>Active Campaigns: <strong>5</strong></li>
+                    <li>New Leads this Month: <strong>320</strong></li>
+                    <li>Conversion Rate: <strong>12.8%</strong></li>
+                </ul>
+                <button class="button">View Detailed Report</button>
+            </div>
+        </div>
+
+        <!-- Campaigns Page -->
+        <div class="page" id="campaigns">
+            <h1>Campaigns</h1>
+            <div class="card">
+                <h2>Create and Manage Campaigns</h2>
+                <button class="button">New Campaign</button>
+                <p>Launch new campaigns effortlessly with our guided setup process.</p>
+            </div>
+            <div class="card">
+                <h2>Ongoing Campaigns</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Campaign</th>
+                            <th>Status</th>
+                            <th>Engagement</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Spring Sale</td>
+                            <td>Active</td>
+                            <td>+15% CTR</td>
+                            <td><button class="button">Edit</button></td>
+                        </tr>
+                        <tr>
+                            <td>Holiday Deals</td>
+                            <td>Paused</td>
+                            <td>+8% CTR</td>
+                            <td><button class="button">Reactivate</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Reports Page -->
+        <div class="page" id="reports">
+            <h1>Reports</h1>
+            <div class="card">
+                <h2>Download Reports</h2>
+                <p>Get in-depth insights into your campaign's performance and financial data.</p>
+                <button class="button">Download Monthly Report</button>
+                <button class="button">Download Annual Report</button>
+            </div>
+            <div class="card">
+                <h2>Top Metrics</h2>
+                <p>Track key performance indicators such as:</p>
+                <ul>
+                    <li>Impressions</li>
+                    <li>Click-Through Rate (CTR)</li>
+                    <li>Conversion Rates</li>
+                    <li>Cost per Conversion</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Messages Page -->
+        <div class="page" id="messages">
+            <h1>Messages</h1>
+            <div class="card">
+                <h2>Inbox</h2>
+                <p>You have <strong>3 new messages</strong>.</p>
+                <button class="button">View All Messages</button>
+            </div>
+            <div class="card">
+                <h2>Recent Updates</h2>
+                <p>Keep up with campaign feedback and platform notifications.</p>
+            </div>
+        </div>
+
+        <!-- Settings Page -->
+        <div class="page" id="settings">
+            <h1>Settings</h1>
+            <div class="card">
+                <h2>Profile Management</h2>
+                <p>Update your name, email, and password to keep your account secure.</p>
+                <button class="button">Edit Profile</button>
+            </div>
+            <div class="card">
+                <h2>Preferences</h2>
+                <p>Set your preferred themes, notification options, and language.</p>
+            </div>
+            <div class="card">
+                <h2>Account Security</h2>
+                <p>Enable two-factor authentication and monitor recent login activity.</p>
+                <button class="button">Secure Account</button>
+            </div>
+        </div>
+
+        <!-- Help Page -->
+        <div class="page" id="help">
+            <h1>Help</h1>
+            <div class="card">
+                <h2>FAQs</h2>
+                <p>Find answers to common questions and troubleshooting tips.</p>
+                <button class="button">Browse FAQs</button>
+            </div>
+            <div class="card">
+                <h2>Contact Support</h2>
+                <p>Need assistance? Reach out to our support team for personalized help.</p>
+                <button class="button">Contact Us</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
