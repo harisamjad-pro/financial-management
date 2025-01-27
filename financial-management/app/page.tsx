@@ -1,5 +1,9 @@
+import MyCampaigns from "@/components/MyCampaigns";
+
 export default function Home() {
     return (
-        <div>Home</div>
+        // <div className="flex items-center justify-center min-h-dvh w-full">
+        // </div>
+            <MyCampaigns />
     );
 }
